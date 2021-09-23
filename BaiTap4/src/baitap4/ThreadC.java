@@ -5,7 +5,7 @@
  */
 package baitap4;
 
-import static baitap4.main.getFileSearch;
+import static baitap4.Main.getFileSearch;
 import java.util.List;
 
 /**
@@ -13,9 +13,9 @@ import java.util.List;
  * @author hieub
  */
 public class ThreadC implements Runnable{
-    private main bt;
+    private Main bt;
 
-    public ThreadC(main bt) {
+    public ThreadC(Main bt) {
         this.bt = bt;
     }
 

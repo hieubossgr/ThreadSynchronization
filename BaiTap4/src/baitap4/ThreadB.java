@@ -13,9 +13,9 @@ import java.util.List;
  * @author hieub
  */
 public class ThreadB implements Runnable{
-    private main bt;
+    private Main bt;
         
-    public ThreadB(main bt) {
+    public ThreadB(Main bt) {
         this.bt = bt;
     }
         
@@ -23,6 +23,7 @@ public class ThreadB implements Runnable{
     public void run() {
         System.out.println(Thread.currentThread().getName() + " is start");
         List<Integer> list = bt.ReadFile(bt.getFileIn());
+        bt.Sort(list);
         bt.WriteFile(bt.getFileOut(), list);
         System.out.println(Thread.currentThread().getName() + " is done!!!");
     }

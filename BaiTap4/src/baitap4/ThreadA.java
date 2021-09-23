@@ -11,9 +11,9 @@ package baitap4;
  * @author hieub
  */
 public class ThreadA implements Runnable{
-    private main bt;
+    private Main bt;
 
-    public ThreadA(main bt) {
+    public ThreadA(Main bt) {
         this.bt = bt;
     }
     

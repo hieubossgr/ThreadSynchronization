@@ -25,7 +25,7 @@ import java.util.regex.Pattern;
  * @author hieub
  */
 
-public class main {
+public class Main {
     
     private static File in = new File("input.txt");
     private static File out = new File("output.txt");
@@ -75,17 +75,18 @@ public class main {
                 System.out.println(Thread.currentThread().getName() + " Read file done!!");
                 raf.close();
             } catch (IOException ex) {
-                Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            if(Thread.currentThread().getName().equals("Thread B")){
-                System.out.println(Thread.currentThread().getName() + " start sort file!!!");
-                Collections.sort(list);
-                System.out.println(Thread.currentThread().getName() + " sorted file");
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         
         return list;
     }
+    
+    public void Sort(List<Integer> list) {
+        System.out.println(Thread.currentThread().getName() + " start sort file!!!");
+        Collections.sort(list);
+        System.out.println(Thread.currentThread().getName() + " sorted file");
+    } 
     
     public synchronized void WriteFile(File file, List<Integer> list) {
         RandomAccessFile raf;
@@ -99,7 +100,7 @@ public class main {
                 System.out.println(Thread.currentThread().getName() + " Write File done");
                 raf.close();
             } catch (IOException ex) {
-                Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }
             checkWriteFile = true;
             notify();
@@ -151,7 +152,7 @@ public class main {
     }
     
     public static void main(String[] args) throws InterruptedException {
-        main bt = new main();
+        Main bt = new Main();
         
         B = new ThreadB(bt);
         Thread threadB = new Thread(B);
