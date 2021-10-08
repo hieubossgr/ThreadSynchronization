@@ -1,24 +1,16 @@
-- Tạo 4 lớp để giải quyết bài toán:
-- Lớp Main.java để chạy chương trình và bao gồm các phương thức đọc file, ghi file, sắp xếp mảng số và tìm kiếm trong file
-- Lớp ThreadB.java 
+- Tạo 5 lớp để giải quyết bài toán:
+- Class Main.java để chạy chương trình và bao gồm các phương thức đọc file, ghi file, sắp xếp mảng số và tìm kiếm trong file
+- Class Handle.java để xử lý các công việc
+- Class ThreadB.java 
   - Là một luồng thực hiện công việc đọc file đầu vào (input.txt): là một dãy số và lưu nó dưới dạng List<Integer>
   - Sau đó sắp xếp mảng đã đọc được
   - Ghi vào file đầu ra (output.txt)
-- Lớp ThreadC.java
+- Class ThreadC.java
   - Là một luồng thực hiện công việc đọc file tìm kiếm (search.txt): cũng là một dãy số và lưu nó dưới dạng List<Integer>
   - Sau đó thực hiện công việc tìm kiếm trong file và ghi dữ liệu tìm kiếm được vào List<String> mes là một biến của lớp Main;
-- Lớp ThreadA.java
+- Class ThreadA.java
   - Thực hiện công việc hiển thị thông tin đã tìm kiếm được đã được ghi lại ở trong List<String> mes
 - Ý tưởng thực hiện:
-  - Ta thấy luồng A phải đợi tới khi luồng C thực hiện xong thì mới có thể thực hiện
-  - Luồng B và C có thể thực hiện đồng thời
-    - Tuy nhiên luồng B phải thực hiện xong công việc ghi file thì luồng C mới có thể tìm kiếm trong cái file đó
-      - Nghĩa là: Luồng B và C có thể đọc file cùng 1 lúc. Sau đó luồng C phải đợi luồng B sắp xếp và ghi vào file thì luồng C mới được thực hiện
-      - Để giải quyết vấn đề này ta sử dụng "wait()" và "notify()" cùng một biến boolean "checkWriteFile":
-        - Nếu "checkWriteFile = false" chưa được ghi: Thì luồng C sẽ đợi: gọi phương thức wait()
-        - Khi luồng B ghi file xong rồi thì gọi phương thức notify() cho luồng C tiếp tục thực hiện
-  - Còn đối với luồng A. Vì phải đợi luồng C thực hiện xong nên ta sử dụng phương thức join() đối với luồng C
-    - threadB.start();
-    - threadC.start();
-    - threadC.join();
-    - threadA.start();
+  - Luồng B thực hiện công việc đọc file input, sắp xếp và ghi vào file output
+  - Luồng C sẽ nhận đầu vào là file output(đầu ra của thread B) sau đó sẽ tìm kiếm trên file output đó và trả về một list<String> ghi lại thông tin tìm kiếm
+  - Thread A sẽ hiển thị thông tin của list<String> là đầu ra của Thread C ở trên đó. 
